@@ -1,0 +1,160 @@
+/* ==========================================
+   WORK EXPERIENCE SECTION STYLING
+   ========================================== */
+
+.work-card {
+  background-color: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Hover Effect Card */
+.work-card:hover {
+  border-color: #d4d4d8;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Support Dark Mode jika website kamu menggunakannya */
+.dark .work-card {
+  background-color: rgba(24, 24, 27, 0.8);
+  border-color: #27272a;
+}
+.dark .work-card:hover {
+  border-color: #3f3f46;
+}
+
+/* Layout Desktop (Gambar di Kiri, Teks di Kanan) */
+@media (min-width: 768px) {
+  .work-card {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+/* Container Gambar */
+.work-image-wrapper {
+  width: 100%;
+  height: 160px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background-color: #f4f4f5;
+  border: 1px solid #e4e4e7;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .work-image-wrapper {
+    width: 220px;
+    height: 140px;
+  }
+}
+
+.work-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.4s ease;
+}
+
+.work-card:hover .work-image-wrapper img {
+  transform: scale(1.04);
+}
+
+/* Detail Teks */
+.work-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.work-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  border-bottom: 1px solid #f4f4f5;
+  padding-bottom: 0.5rem;
+}
+.dark .work-header {
+  border-bottom-color: #27272a;
+}
+
+.work-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #18181b;
+  margin: 0;
+}
+.dark .work-title {
+  color: #f4f4f5;
+}
+
+.work-company {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #52525b;
+  margin-top: 0.15rem;
+}
+.dark .work-company {
+  color: #a1a1aa;
+}
+
+.work-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.6rem;
+  background-color: #f4f4f5;
+  color: #52525b;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+.dark .work-location {
+  background-color: #27272a;
+  color: #a1a1aa;
+}
+
+.work-description {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #52525b;
+  margin: 0;
+}
+.dark .work-description {
+  color: #a1a1aa;
+}
+
+/* Tech Chips */
+.work-tech-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-top: 0.25rem;
+}
+
+.work-tech-chip {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.2rem 0.5rem;
+  background-color: #f4f4f5;
+  color: #3f3f46;
+  border-radius: 0.375rem;
+  border: 1px solid #e4e4e7;
+}
+.dark .work-tech-chip {
+  background-color: #27272a;
+  color: #d4d4d8;
+  border-color: #3f3f46;
+}

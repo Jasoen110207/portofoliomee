@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">      
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Portfolio</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet"href="style/style.css">
+    <style>
+        /* Custom subtle scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fafafa;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #18181b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4d4d8;
+            border-radius: 10px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #3f3f46;
+        }
+        /* Fallback tampilan kartu sertifikat jika gambar belum ada */
+        .cert-fallback img { display: none; }
+        .cert-fallback .cert-fallback-content { display: flex; }
+    </style>
+</head>
+<body class="bg-[#fcfcfd] dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-sans antialiased min-h-screen relative transition-colors duration-300">
+
+    <!-- FLOATING TOP NAVIGATION BAR -->
+    <header class="fixed top-4 left-0 right-0 z-50 flex justify-between items-center px-6 max-w-7xl mx-auto pointer-events-none">
+        <!-- Center Pill Navigation -->
+        <nav class="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border border-zinc-200/80 dark:border-zinc-800 shadow-sm rounded-full p-1.5 flex items-center gap-1 mx-auto pointer-events-auto transition-colors">
+            <a href="#about" class="px-4 py-1.5 bg-zinc-200/80 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 font-semibold text-xs rounded-full flex items-center gap-2 transition" data-i18n="nav_about">
+                <i class="fa-regular fa-user text-xs"></i> About
+            </a>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <div id="about" class="max-w-6xl mx-auto px-6 pt-28 pb-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+            <!-- LEFT COLUMN: STICKY PROFILE & NAVIGATION -->
+            <aside class="lg:col-span-4 space-y-8 lg:sticky lg:top-28 lg:h-[calc(100vh-8rem)]">
+                <!-- Avatar & Badges -->
+                <div class="flex flex-col items-start gap-4">
+                    <div class="w-44 h-44 rounded-full overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-sm bg-white">
+                        <img src="img/pp2 - Copy.jpeg" alt="Profile Avatar" class="w-full h-full object-contain">
+                    </div>
+
+                    <div class="flex items-center gap-2 text-xs text-zinc-600 dark:text-zinc-400">
+                        <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                        <span class="font-medium">Indonesia</span>
+                    </div>
+
+                    <!-- Tombol Ganti Bahasa -->
+                    <div class="flex items-center gap-1.5 text-xs font-semibold">
+                        <button id="btn-lang-en" type="button" class="px-2.5 py-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 rounded-md hover:bg-zinc-300 dark:hover:bg-zinc-700 transition">English</button>
+                        <button id="btn-lang-id" type="button" class="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-900 text-zinc-500 dark:text-zinc-400 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-800 transition">Indonesian</button>
+                    </div>
+
+                    <!-- Status Badges -->
+                    <div class="flex flex-col items-start gap-1.5">
+                        <span class="px-2.5 py-0.5 bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-zinc-300 text-xs font-medium rounded-md" data-i18n="badge_student">Student</span>
+                        <span class="px-2.5 py-0.5 bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-zinc-300 text-xs font-medium rounded-md" data-i18n="badge_freelancer">Freelancer</span>
+                        <span class="px-2.5 py-0.5 bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-zinc-300 text-xs font-medium rounded-md" data-i18n="badge_developer">Developer</span>
+                        <span class="px-2.5 py-0.5 bg-gray-100 dark:bg-zinc-800 text-gray-600 dark:text-zinc-300 text-xs font-medium rounded-md" data-i18n="badge_programmer">Programmer</span>
+                    </div>
+                </div>
+
+                <!-- Side Section Navigation (Quick Links) -->
+
+            </aside>
+
+            <!-- RIGHT COLUMN: MAIN CONTENT SECTIONS -->
+            <main class="lg:col-span-8 space-y-16">
+
+                <!-- 1. INTRODUCTION SECTION -->
+                <section id="introduction" class="scroll-mt-32 space-y-6">
+                    <!-- Schedule Button -->
+                    <a href="#" class="inline-flex items-center gap-2 px-4 py-2 bg-sky-100/70 dark:bg-sky-950/50 hover:bg-sky-200/60 dark:hover:bg-sky-900/60 text-sky-700 dark:text-sky-300 text-xs font-semibold rounded-full border border-sky-200/60 dark:border-sky-800/60 transition">
+                        <i class="fa-regular fa-calendar text-xs"></i>
+                        <span data-i18n="schedule_btn">Schedule a call</span>
+                        <i class="fa-solid fa-chevron-right text-[10px] ml-1"></i>
+                    </a>
+
+                    <!-- Main Name & Role -->
+                    <div class="space-y-1">
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight">
+                            Muhammad Agus Subarkah
+                        </h1>
+                        <p class="text-xl md:text-2xl text-zinc-400 dark:text-zinc-500 font-medium" data-i18n="role_title">
+                            Software Engineer
+                        </p>
+                    </div>
+
+                    <!-- Social Chips -->
+                    <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                        <a href="https://www.instagram.com/brkaa.arc?igsh=MXNsZGdieHkxOXRpbw==" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200/70 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-lg flex items-center gap-2 border border-zinc-200/60 dark:border-zinc-800 transition text-xs font-semibold w-fit">
+                            <i class="fa-brands fa-instagram text-xs text-pink-600"></i> Instagram
+                        </a>
+                        <a href="https://linkedin.com/in/username_kamu" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200/70 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-lg flex items-center gap-2 border border-zinc-200/60 dark:border-zinc-800 transition text-xs font-semibold w-fit">
+                            <i class="fa-brands fa-linkedin text-xs text-blue-600"></i> LinkedIn
+                        </a>
+                        <a href="mailto:mochammadagussubarkah@gmail.com" class="px-3 py-1.5 bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200/70 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 rounded-lg flex items-center gap-2 border border-zinc-200/60 dark:border-zinc-800 transition text-xs font-semibold w-fit">
+                            <i class="fa-regular fa-envelope text-xs"></i> Email
+                        </a>
+                    </div>
+
+                    <!-- Bio Paragraph -->
+                    <p class="text-zinc-600 dark:text-zinc-400 text-base md:text-lg leading-relaxed pt-2" data-i18n="bio_text">
+                        Hi, I'm Barka — a web developer and streetwear enthusiast focused on building modern digital solutions, robust backend architecture, and efficient e-commerce systems. With a background in Information Systems, I combine clean code functionality with precise UI design to deliver responsive, high-impact user experiences.
+                    </p>
+
+                    <div id="snapshot-container" class="grid grid-cols-3 gap-3 pt-4"></div>
+                </section>
+                <!-- 4. STUDIES SECTION -->
+                <section id="studies" class="scroll-mt-32 space-y-6 pt-8 border-t border-zinc-100 dark:border-zinc-800">
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-zinc-900 dark:text-zinc-100" data-i18n="title_studies">
+                        Studies
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100">Bina Sarana Informatika University</h3>
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400" data-i18n="study_bsi">Information Systems Student</p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-zinc-900 dark:text-zinc-100">Build the Future</h3>
+                            <p class="text-sm text-zinc-500 dark:text-zinc-400" data-i18n="study_btf">Studied online marketing and personal branding.</p>
+                        </div>
+                    </div>
+                </section>
+               <!-- WORK EXPERIENCE SECTION -->
+                <section id="work-experience" class="scroll-mt-32 space-y-6 pt-8 border-t border-zinc-100 dark:border-zinc-800">
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-zinc-900 dark:text-zinc-100">
+                        Work Experience
+                    </h2>
+
+                    <!-- Container Utama tempat card di-render -->
+                    <div id="work-grid" class="space-y-4"></div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- PROJECTS MODAL: markup ada di project.html, ditarik ke sini via fetch oleh snapshot-projects.js -->
+    <div id="project-modal-placeholder"></div>
+
+    <!-- SKILLS MODAL: markup ada di skils.html, ditarik ke sini via fetch oleh snapshot-skills.js -->
+    <div id="skills-modal-placeholder"></div>
+
+    <!-- CERTIFICATES MODAL: markup ada di sertifikat.html, ditarik ke sini via fetch oleh snapshot-certificates.js -->
+    <div id="sertifikat-modal-placeholder"></div>
+
+    <!-- GPA MODAL: markup ada di gpa.html, ditarik ke sini via fetch oleh gpa.js -->
+    <div id="gpa-modal-placeholder"></div>
+
+    <!-- RUANG TALENTA MODAL: markup ada di talent.html, isi grid diambil otomatis dari talent-data.xlsx oleh talent.js -->
+    <div id="talent-modal-placeholder"></div>
+    <div id="work-modal-placeholder"></div> 
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="assets/js/supabase-client.js"></script>
+    <script src="assets/js/snapshot-projects.js"></script>
+    <script src="assets/js/snapshot-skills.js"></script>
+    <script src="assets/js/snapshot-certificates.js"></script>
+    <script src="assets/js/snapshot-gpa.js"></script>
+    <script src="assets/js/snapshot-talent.js"></script>
+    <script src="assets/js/language.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/work.js"></script>
+</body>
+</html>
