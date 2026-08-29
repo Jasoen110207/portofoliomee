@@ -24,6 +24,7 @@ async function loadWork() {
     const { data, error } = await window.supabaseClient
       .from("work")
       .select('*')
+      .eq("status", "Published")
       .order("id", { ascending: false });
 
     if (error) throw error;
