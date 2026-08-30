@@ -94,7 +94,7 @@
             const { data, error } = await window.supabaseClient
                 .from('projects')
                 .select('id, title, description, tech_stack, thumbnail, status')
-                .eq('status', 'Published')
+                .eq("status", "Published")
                 .order('id', { ascending: true });
 
             if (error) throw error;
