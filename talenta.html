@@ -1,25 +1,125 @@
-<div id="talent-modal-overlay"
-     class="fixed inset-0 hidden items-center justify-center bg-black/70 z-50">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Talent Showcase</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Segoe UI", system-ui, sans-serif; background: #e9edf2; }
 
-    <div class="bg-white dark:bg-zinc-900 rounded-3xl w-[95%] max-w-6xl p-6">
+  /* Tombol demo pembuka modal (ganti dengan tombol Talent Anda) */
+  .open-btn { margin: 40px; padding: 12px 22px; border: 0; border-radius: 12px;
+    background: #0a8fd6; color: #fff; font-size: 16px; cursor: pointer; }
 
-        <div class="flex justify-between items-center mb-6">
+  /* ===== OVERLAY + PANEL (sama seperti Certificates) ===== */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 1000;
+    display: none; align-items: center; justify-content: center;
+    padding: 24px; background: rgba(0,0,0,.45); backdrop-filter: blur(4px);
+  }
+  .modal-overlay.open { display: flex; }
 
-            <div>
-                <h2 class="text-2xl font-bold">Talent Showcase</h2>
-                <p class="text-sm text-zinc-500">
-                    Koleksi Content Saya
-                </p>
-            </div>
+  .modal-panel {
+    width: 100%; max-width: 1150px; max-height: 90vh;
+    display: flex; flex-direction: column;
+    background: #fff; border-radius: 32px; overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,.3);
+  }
 
-            <button onclick="closeTalentModal()"
-                    class="text-2xl hover:text-red-500">
-                ✕
-            </button>
+  /* Header tetap di atas, tidak ikut ter-scroll */
+  .modal-header {
+    flex: none; display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 32px; border-bottom: 1px solid #eee; background: #fff;
+  }
+  .modal-title { margin: 0; font-size: 26px; font-weight: 800; color: #111; }
+  .modal-sub { margin: 2px 0 0; font-size: 14px; color: #777; }
+  .modal-close {
+    width: 40px; height: 40px; border: 0; border-radius: 50%;
+    background: transparent; font-size: 26px; line-height: 1; color: #666; cursor: pointer;
+  }
+  .modal-close:hover { background: #f1f1f1; }
 
-        </div>
+  /* Area isi yang bisa di-scroll ke bawah */
+  .modal-body { flex: 1; overflow-y: auto; padding: 32px; overscroll-behavior: contain; }
 
-       <div id="talent-grid"
-     class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+  /* ===== GRID KARTU ===== */
+  .talent-grid {
+    display: grid; gap: 28px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  .talent-card {
+    display: flex; flex-direction: column; overflow: hidden; text-decoration: none;
+    background: #fff; border: 1px solid #e6e6e6; border-radius: 22px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.06);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .talent-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,.12); }
+
+  .talent-thumb {
+    aspect-ratio: 4 / 3; background: #f3f3f3 center / cover no-repeat;
+    display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 32px;
+  }
+  .talent-info { padding: 18px 20px 22px; }
+  .badge {
+    display: inline-block; padding: 6px 14px; border-radius: 999px;
+    background: #e8f4fd; color: #0a8fd6; font-size: 14px; font-weight: 500;
+  }
+  .talent-info h3 { margin: 14px 0 6px; font-size: 20px; font-weight: 600; color: #222; }
+  .talent-info p { margin: 0; font-size: 15px; color: #777; line-height: 1.5; }
+
+  @media (max-width: 600px) {
+    .modal-overlay { padding: 10px; }
+    .modal-panel { border-radius: 24px; max-height: 94vh; }
+    .modal-header, .modal-body { padding-left: 20px; padding-right: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<button class="open-btn" onclick="openTalent()">Buka Talent Showcase</button>
+
+<div class="modal-overlay" id="talentModal" onclick="if(event.target===this)closeTalent()">
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="talentTitle">
+    <div class="modal-header">
+      <div>
+        <h2 class="modal-title" id="talentTitle">Talent Showcase</h2>
+        <p class="modal-sub">Koleksi Content Saya</p>
+      </div>
+      <button class="modal-close" onclick="closeTalent()" aria-label="Tutup">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="talent-grid" id="talentGrid"></div>
+    </div>
+  </div>
 </div>
-</div>
+
+<script>
+  // Ganti thumb dengan path gambar Anda dan link dengan URL TikTok/Instagram
+  const talents = [
+    { title: "Pengenalan Profil Perusahaan", desc: "Video pengenalan profil Martha Jaya Furniture.", type: "TikTok", thumb: "img/talent-1.jpg", link: "#" },
+    { title: "Sistem Kontrol & Alur Produksi Furnitur", desc: "Alur produksi pabrik furnitur dari awal hingga akhir.", type: "TikTok", thumb: "img/talent-2.jpg", link: "#" },
+    { title: "Bongkar Keunggulan Perusahaan", desc: "Mengupas keunggulan Martha Jaya Furniture.", type: "TikTok", thumb: "img/talent-3.jpg", link: "#" },
+    { title: "Bongkar Keunggulan Furniture Perusahaan", desc: "Kursi teras dengan sentuhan modern minimalis.", type: "TikTok", thumb: "img/talent-4.jpg", link: "#" },
+    { title: "Review Produk Perusahaan", desc: "Review produk buffet minimalis.", type: "TikTok", thumb: "img/talent-5.jpg", link: "#" },
+    { title: "Rekap Seminar Digital", desc: "Rangkuman seminar digital.", type: "Instagram", thumb: "", link: "#" },
+    { title: "OOTD Check: Item Details", desc: "Detail item outfit of the day.", type: "Instagram", thumb: "", link: "#" }
+  ];
+
+  document.getElementById('talentGrid').innerHTML = talents.map(t => `
+    <a class="talent-card" href="${t.link}" target="_blank" rel="noopener">
+      <div class="talent-thumb" style="${t.thumb ? `background-image:url('${t.thumb}')` : ''}">${t.thumb ? '' : '▶'}</div>
+      <div class="talent-info">
+        <span class="badge">${t.type}</span>
+        <h3>${t.title}</h3>
+        <p>${t.desc}</p>
+      </div>
+    </a>`).join('');
+
+  const modal = document.getElementById('talentModal');
+  function openTalent(){ modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeTalent(){ modal.classList.remove('open'); document.body.style.overflow = ''; }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeTalent(); });
+</script>
+</body>
+</html>
